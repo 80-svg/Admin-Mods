@@ -42,11 +42,13 @@ public class AmCommand {
             player.setAttached(AdminModeData.adminXP, currentXp);
             player.setAttached(AdminModeData.adminPos, currentPos);
             player.setAttached(AdminModeData.adminEffects, currentEffects);
+            player.setAttached(AdminModeData.adminHealth, player.getHealth());
 
             applyInventory(player, player.getAttached(AdminModeData.playerInv));
             setPlayerXp(player, player.getAttached(AdminModeData.playerXP));
             restorePosition(player, commandContext.getSource().getServer(), player.getAttached(AdminModeData.playerPos));
             restoreEffects(player, player.getAttached(AdminModeData.playerEffects));
+            setPlayerHP(player, player.getAttached(AdminModeData.playerHealth));
 
             player.setGameMode(GameType.SURVIVAL);
             player.setAttached(AdminModeData.isAm, false);
@@ -56,11 +58,13 @@ public class AmCommand {
             player.setAttached(AdminModeData.playerXP, currentXp);
             player.setAttached(AdminModeData.playerPos, currentPos);
             player.setAttached(AdminModeData.playerEffects, currentEffects);
+            player.setAttached(AdminModeData.playerHealth, player.getHealth());
 
             applyInventory(player, player.getAttached(AdminModeData.adminInv));
             setPlayerXp(player, player.getAttached(AdminModeData.adminXP));
             restorePosition(player, commandContext.getSource().getServer(), player.getAttached(AdminModeData.adminPos));
             restoreEffects(player, player.getAttached(AdminModeData.adminEffects));
+            setPlayerHP(player, player.getAttached(AdminModeData.adminHealth));
 
             player.setGameMode(GameType.CREATIVE);
             player.setAttached(AdminModeData.isAm, true);
@@ -109,5 +113,10 @@ public class AmCommand {
         } else {
             player.getInventory().replaceWith(source);
         }
+    }
+
+    private static void setPlayerHP(ServerPlayer player, Float hp) {
+        if (hp == null) hp = 20.0F;
+        player.setHealth(hp);
     }
 }

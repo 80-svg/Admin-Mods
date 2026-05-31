@@ -46,7 +46,8 @@ public class AdminModeData {
     public static final AttachmentType<PositionData> playerPos = createPersistentAttachment("player_pos", () -> null, PositionData.CODEC);
     public static final AttachmentType<List<MobEffectInstance>> adminEffects = createPersistentAttachment("admin_effects", ArrayList::new, EFFECTS_CODEC);
     public static final AttachmentType<List<MobEffectInstance>> playerEffects = createPersistentAttachment("player_effects", ArrayList::new, EFFECTS_CODEC);
-
+    public static final AttachmentType<Float> adminHealth = createPersistentAttachment("admin_health", () -> 20.0F, Codec.FLOAT);
+    public static final AttachmentType<Float> playerHealth = createPersistentAttachment("player_health", () -> 20.0F, Codec.FLOAT);
     private static <T> AttachmentType<T> createPersistentAttachment(String path, Supplier<T> initializer, Codec<T> codec) {
         return AttachmentRegistry.create(
                 Identifier.fromNamespaceAndPath(Adminmods.MOD_ID, path),

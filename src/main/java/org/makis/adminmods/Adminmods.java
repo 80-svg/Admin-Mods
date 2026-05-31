@@ -11,6 +11,7 @@ public class Adminmods implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        AdminModeData.init();
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             AmCommand.register(dispatcher);
         });

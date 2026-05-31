@@ -48,6 +48,12 @@ public class AdminModeData {
     public static final AttachmentType<List<MobEffectInstance>> playerEffects = createPersistentAttachment("player_effects", ArrayList::new, EFFECTS_CODEC);
     public static final AttachmentType<Float> adminHealth = createPersistentAttachment("admin_health", () -> 20.0F, Codec.FLOAT);
     public static final AttachmentType<Float> playerHealth = createPersistentAttachment("player_health", () -> 20.0F, Codec.FLOAT);
+
+    public static void init() {
+        // This method is called to trigger static initialization of the class
+        // and register the attachment types.
+    }
+
     private static <T> AttachmentType<T> createPersistentAttachment(String path, Supplier<T> initializer, Codec<T> codec) {
         return AttachmentRegistry.create(
                 Identifier.fromNamespaceAndPath(Adminmods.MOD_ID, path),
